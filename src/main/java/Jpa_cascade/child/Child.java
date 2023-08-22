@@ -1,6 +1,7 @@
-package Jpa_cascade.parent;
+package Jpa_cascade.child;
 
 
+import Jpa_cascade.parent.Parent;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,6 @@ import javax.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -27,6 +27,10 @@ public class Child {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn
   private Parent parent;
+
+  public Child(final String name) {
+    this.name = name;
+  }
 
   public void setParent(final Parent parent) {
     this.parent = parent;
