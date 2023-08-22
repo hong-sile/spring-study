@@ -26,7 +26,7 @@ public class Member {
   @Column(name = "NAME")
   private String username;
   private Integer age;
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn
   private Team team;
 

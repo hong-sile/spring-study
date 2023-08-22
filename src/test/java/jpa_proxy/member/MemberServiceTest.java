@@ -1,10 +1,10 @@
 package jpa_proxy.member;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import jpa_proxy.team.Team;
 import jpa_proxy.team.TeamRepository;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,5 +75,26 @@ class MemberServiceTest {
     final Team foundTeam = em.find(Team.class, TEAM_PK);
     System.out.println(foundTeam.getClass());
     System.out.println(foundTeam == member.getTeam());
+  }
+
+  @Transactional
+  @Test
+  @DisplayName("멤버 repository 써서, proxy 확인해보기")
+  void lazyLoadingCase() {
+    final Member member = memberRepository.findById(MEMBER_PK).get();
+
+    System.out.println(member.getTeam().getClass());
+    System.out.println(member.getTeam().getName());
+  }
+
+  @Transactional
+  @Test
+  @DisplayName("즉시로딩 사용 시 N+1 문제 발생")
+  void eagerLoadingNPlus1() {
+    //EAGER로 세팅한 경우 join을 사용하지 않고 쿼리가, 쪼개져서 나간다.
+    //아래의 경우 member 조회 쿼리 한번, team 조회 쿼리 한번 나간다.
+    //심지어, Team이 여러개인 경우(연관관계에 있는 값이 여러개인 경우에는, 그 수만큼 나간다.)
+    //예를 들어 TeamA에 속한 멤버와 TeamB에 속한 멤버가 있으면 Team 조회 쿼릭 ㅏ두번 나간다.
+    final List<Member> allMemberJPQL = memberRepository.findAllMemberJPQL();
   }
 }
