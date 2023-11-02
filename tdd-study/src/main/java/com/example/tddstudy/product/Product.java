@@ -1,4 +1,4 @@
-package com.example.tddstudy;
+package com.example.tddstudy.product;
 
 import org.springframework.util.Assert;
 
