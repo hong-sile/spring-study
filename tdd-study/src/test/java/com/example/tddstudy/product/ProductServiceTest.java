@@ -26,8 +26,13 @@ public class ProductServiceTest {
     final GetProductResponse actual = productService.getProduct(productId);
 
     //then
+    final GetProductResponse expected = new GetProductResponse(
+        productId, savedProduct.getName(), savedProduct.getPrice(), savedProduct.getDiscountPolicy()
+    );
+
     assertThat(actual)
-        .isNotNull();
+        .usingRecursiveComparison()
+        .isEqualTo(expected);
   }
 
 }
