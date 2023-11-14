@@ -1,4 +1,4 @@
-package com.example.tddstudy;
+package com.example.tddstudy.product.support;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 

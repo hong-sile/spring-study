@@ -1,4 +1,4 @@
-package com.example.tddstudy;
+package com.example.tddstudy.product.support;
 
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;

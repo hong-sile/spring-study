@@ -2,7 +2,7 @@ package com.example.tddstudy.product;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.example.tddstudy.ApiTest;
+import com.example.tddstudy.product.support.ApiTest;
 import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;

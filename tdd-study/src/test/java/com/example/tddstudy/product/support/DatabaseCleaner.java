@@ -1,4 +1,4 @@
-package com.example.tddstudy;
+package com.example.tddstudy.product.support;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +28,12 @@ public class DatabaseCleaner {
   }
 
   private void truncate() {
-    entityManager.createNativeQuery(String.format("SET FOREIGN_KEY_CHECKS %d", 0)).executeUpdate();
+    entityManager.createNativeQuery("SET REFERENTIAL_INTEGRITY FALSE").executeUpdate();
     for (String tableName : tableNames) {
       entityManager.createNativeQuery(String.format("TRUNCATE TABLE %s", tableName))
           .executeUpdate();
     }
-    entityManager.createNativeQuery(String.format("SET FOREIGN_KEY_CHECKS %d", 1)).executeUpdate();
+    entityManager.createNativeQuery("SET REFERENTIAL_INTEGRITY TRUE").executeUpdate();
   }
 
   @Transactional
