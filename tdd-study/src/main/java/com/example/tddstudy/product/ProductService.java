@@ -13,10 +13,16 @@ class ProductService {
   }
 
   @Transactional
-  public void addProduct(final AddProductRequest request) {
+  public Product addProduct(final AddProductRequest request) {
     final Product product = new Product(request.name(), request.price(), request.discountPolicy());
 
-    productPort.save(product);
+    return productPort.save(product);
   }
 
+  public GetProductResponse getProduct(final Long productId) {
+    final Product product = productPort.getProduct(productId);
+    return new GetProductResponse(
+        product.getId(), product.getName(), product.getPrice(), product.getDiscountPolicy()
+    );
+  }
 }
