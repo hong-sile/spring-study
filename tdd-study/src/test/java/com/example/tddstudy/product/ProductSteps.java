@@ -24,4 +24,20 @@ class ProductSteps {
     final DiscountPolicy policy = DiscountPolicy.NONE;
     return new AddProductRequest(name, price, policy);
   }
+
+  public static GetProductResponse 상품응답_생성(final Long id) {
+    final String name = "상품명";
+    final int price = 1000;
+    final DiscountPolicy policy = DiscountPolicy.NONE;
+    return new GetProductResponse(id, name, price, policy);
+  }
+
+  public static ExtractableResponse<Response> 상품조회요청(final Long id) {
+    return RestAssured.given()
+        .log().all()
+        .when()
+        .get("/products/{id}", id)
+        .then()
+        .log().all().extract();
+  }
 }

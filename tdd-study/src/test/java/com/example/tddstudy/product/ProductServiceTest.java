@@ -34,5 +34,4 @@ public class ProductServiceTest {
         .usingRecursiveComparison()
         .isEqualTo(expected);
   }
-
 }
