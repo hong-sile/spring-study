@@ -25,4 +25,10 @@ class ProductService {
         product.getId(), product.getName(), product.getPrice(), product.getDiscountPolicy()
     );
   }
+
+  @Transactional
+  public void updateProduct(final Long productId, final UpdateProductRequest request) {
+    final Product product = productPort.getProduct(productId);
+    product.update(request.name(), request.price(), request.policy());
+  }
 }
