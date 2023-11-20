@@ -32,6 +32,10 @@ class ProductSteps {
     return new GetProductResponse(id, name, price, policy);
   }
 
+  public static UpdateProductRequest 상품수정요청_생성() {
+    return new UpdateProductRequest("상품 수정", 5000, DiscountPolicy.NONE);
+  }
+
   public static ExtractableResponse<Response> 상품조회요청(final Long id) {
     return RestAssured.given()
         .log().all()
