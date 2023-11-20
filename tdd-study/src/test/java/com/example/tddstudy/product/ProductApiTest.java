@@ -2,6 +2,7 @@ package com.example.tddstudy.product;
 
 import static com.example.tddstudy.product.ProductSteps.상품등록요청;
 import static com.example.tddstudy.product.ProductSteps.상품등록요청_생성;
+import static com.example.tddstudy.product.ProductSteps.상품수정요청;
 import static com.example.tddstudy.product.ProductSteps.상품응답_생성;
 import static com.example.tddstudy.product.ProductSteps.상품조회요청;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,6 +40,26 @@ class ProductApiTest extends ApiTest {
             .usingRecursiveComparison()
             .isEqualTo(상품응답_생성(productId))
     );
+  }
+
+  @Test
+  void 상품수정() {
+    //given
+    final var productAddResponse = 상품등록요청(상품등록요청_생성());
+    final Long productId = parseProductIdFromLocation(productAddResponse);
+    final UpdateProductRequest request
+        = new UpdateProductRequest("상품 수정", 5000, DiscountPolicy.NONE);
+
+    //when
+    상품수정요청(productId, request);
+
+    //then
+    final var actual = 상품조회요청(productId).as(GetProductResponse.class);
+    final var expected
+        = new GetProductResponse(productId, request.name(), request.price(), request.policy());
+    assertThat(actual)
+        .usingRecursiveComparison()
+        .isEqualTo(expected);
   }
 
   private static Long parseProductIdFromLocation(final ExtractableResponse<Response> response) {

@@ -40,4 +40,17 @@ class ProductSteps {
         .then()
         .log().all().extract();
   }
+
+  public static ExtractableResponse<Response> 상품수정요청(
+      final Long id, final UpdateProductRequest request
+  ) {
+    return RestAssured.given()
+        .log().all()
+        .contentType(MediaType.APPLICATION_JSON_VALUE)
+        .body(request)
+        .when()
+        .put("/products/{id}", id)
+        .then()
+        .log().all().extract();
+  }
 }
