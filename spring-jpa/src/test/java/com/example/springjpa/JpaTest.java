@@ -40,7 +40,7 @@ class JpaTest {
 
     //then
     assertThat(members)
-        .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
+        .usingRecursiveFieldByFieldElementComparator()
         .containsExactlyInAnyOrder(hongSile);
   }
 
@@ -68,8 +68,28 @@ class JpaTest {
 
     //then
     assertThat(members)
-        .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
+        .usingRecursiveFieldByFieldElementComparator()
         .containsExactlyInAnyOrder(member);
   }
 
+  @Test
+  void QueryDSL을_이용해보기() {
+    //TODO: QueryDsl 학습후 확인하기
+
+  }
+
+  @Test
+  void NativeQuery을_이용해보기() {
+    //given
+    final Member member = 멤버를_저장하고_반환한다();
+
+    //when
+    final String sql = "select * from member";
+    final List<Member> members = em.createNativeQuery(sql, Member.class).getResultList();
+
+    //then
+    assertThat(members)
+        .usingRecursiveFieldByFieldElementComparator()
+        .containsExactlyInAnyOrder(member);
+  }
 }
