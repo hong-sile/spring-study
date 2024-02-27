@@ -2,15 +2,18 @@ package clug.ablyclone.support;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
+import clug.ablyclone.config.DatabaseClearExtension;
 import clug.ablyclone.repository.ItemRepository;
 import clug.ablyclone.repository.SellerRepository;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
+@ExtendWith(DatabaseClearExtension.class)
 @SuppressWarnings("NonAsciiCharacters")
 public abstract class AcceptanceTest {
 
