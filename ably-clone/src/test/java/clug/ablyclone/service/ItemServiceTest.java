@@ -28,7 +28,7 @@ class ItemServiceTest extends ServiceTest {
   void Item_목록을_조회한다() {
     final Item 나시_티셔츠 = 나시티셔츠_저장();
 
-    final List<ItemPreviewResponse> actual = itemService.findAll();
+    final List<ItemPreviewResponse> actual = itemService.findAll(0L);
     final List<ItemPreviewResponse> expected = List.of(
         ItemPreviewResponse.from(나시_티셔츠)
     );

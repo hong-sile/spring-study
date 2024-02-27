@@ -17,8 +17,8 @@ public class ItemService {
 
   private final ItemRepository itemRepository;
 
-  public List<ItemPreviewResponse> findAll() {
-    return itemRepository.findAllFetchSeller()
+  public List<ItemPreviewResponse> findAll(final long lastItemId) {
+    return itemRepository.findAllFetchSeller(lastItemId)
         .stream()
         .map(ItemPreviewResponse::from)
         .toList();

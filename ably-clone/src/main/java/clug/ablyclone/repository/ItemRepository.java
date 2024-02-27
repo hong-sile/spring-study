@@ -12,8 +12,11 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
       select i
       from Item i
       join fetch Seller s on s.id = i.seller.id
+      where i.id > :lastItemId
+      ORDER BY i.id ASC
+      limit 10
       """)
-  List<Item> findAllFetchSeller();
+  List<Item> findAllFetchSeller(final long lastItemId);
 
   @Query("""
       select i

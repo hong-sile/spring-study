@@ -5,6 +5,8 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.queryParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import clug.ablyclone.dto.FormattedItemDetailResponse.ItemDetailResponse;
@@ -22,11 +24,15 @@ public class ItemDocTest extends DocTest {
         new ItemPreviewResponse(1L, "29%", "clug_1", "나시 티셔츠", "이미지", 23500L)
     );
 
-    when(itemService.findAll()).thenReturn(itemPreviewResponses);
+    when(itemService.findAll(0)).thenReturn(itemPreviewResponses);
 
     mockMvc.perform(get("/items"))
         .andExpect(status().isOk())
         .andDo(document("find-all-items",
+            queryParameters(
+                parameterWithName("cursor").description("(Optional) 이전 페이지 마지막 게시글 식별자값(id)")
+                    .optional()
+            ),
             responseFields(
                 성공여부,
                 메시지,
