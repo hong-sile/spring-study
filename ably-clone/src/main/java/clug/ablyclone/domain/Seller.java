@@ -24,5 +24,6 @@ public class Seller {
   @Builder
   public Seller(final String name, final String profileImageUrl) {
     this.name = name;
+    this.profileImageUrl = profileImageUrl;
   }
 }
