@@ -7,6 +7,7 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWit
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import clug.ablyclone.dto.FormattedItemDetailResponse.ItemDetailResponse;
 import clug.ablyclone.dto.FormattedItemPreviewResponse.ItemPreviewResponse;
 import clug.ablyclone.support.DocTest;
 import java.util.List;
@@ -38,6 +39,34 @@ public class ItemDocTest extends DocTest {
                     .description("상품 이미지 url"),
                 fieldWithPath("data[].discountedPrice").type(JsonFieldType.NUMBER)
                     .description("상품 가격")
+            )
+        ));
+  }
+
+  @Test
+  void 아이템_단건_조회() throws Exception {
+    final Long id = 1L;
+    final ItemDetailResponse detailResponse = new ItemDetailResponse(
+        List.of("image"), "나시 티셔츠", 29900L, 21229L, "Clug_1", "클러그 프로필 이미지 url"
+    );
+
+    when(itemService.findById(id)).thenReturn(detailResponse);
+
+    mockMvc.perform(get("/items/" + id))
+        .andExpect(status().isOk())
+        .andDo(document("find-item",
+            responseFields(
+                성공여부,
+                메시지,
+                fieldWithPath("data.imageUrls[]").type(JsonFieldType.ARRAY).description("이미지 url들"),
+                fieldWithPath("data.name").type(JsonFieldType.STRING).description("상품 이름"),
+                fieldWithPath("data.originPrice").type(JsonFieldType.NUMBER)
+                    .description("상품 원래 가격"),
+                fieldWithPath("data.discountedPrice").type(JsonFieldType.NUMBER)
+                    .description("상품 할인 가격"),
+                fieldWithPath("data.sellerName").type(JsonFieldType.STRING).description("판매자 이름"),
+                fieldWithPath("data.sellerProfileImageUrl").type(JsonFieldType.STRING)
+                    .description("판매자 프로필 이미지 url")
             )
         ));
   }
