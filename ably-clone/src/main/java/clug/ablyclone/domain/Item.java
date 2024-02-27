@@ -1,5 +1,6 @@
 package clug.ablyclone.domain;
 
+import static jakarta.persistence.CascadeType.PERSIST;
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
@@ -8,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,20 +27,30 @@ public class Item {
   @ManyToOne(fetch = LAZY)
   private Seller seller;
   private String itemName;
-  private String imageUrl;
+  @OneToMany(mappedBy = "item", cascade = PERSIST, orphanRemoval = true)
+  private List<ImageUrl> imageUrls;
   private Long originPrice;
 
   @Builder
   public Item(final int discountPercentage, final Seller seller, final String itemName
-      , final String imageUrl, final Long originPrice) {
+      , final List<ImageUrl> imageUrls, final Long originPrice) {
+    associationMappingImageUrls(imageUrls);
     this.discountPercentage = discountPercentage;
     this.seller = seller;
     this.itemName = itemName;
-    this.imageUrl = imageUrl;
+    this.imageUrls = imageUrls;
     this.originPrice = originPrice;
+  }
+
+  private void associationMappingImageUrls(final List<ImageUrl> imageUrls) {
+    imageUrls.forEach(imageUrl -> imageUrl.updateItem(this));
   }
 
   public Long getDiscountedPrice() {
     return originPrice - discountPercentage * originPrice / 100;
+  }
+
+  public String getThumbnailUrl() {
+    return imageUrls.get(0).getUrl();
   }
 }

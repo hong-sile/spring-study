@@ -40,7 +40,7 @@ public class FormattedItemPreviewResponse extends DefaultResponseFormat {
           String.format(DISCOUNT_PERCENTAGE_FORMAT, item.getDiscountPercentage()),
           item.getSeller().getName(),
           item.getItemName(),
-          item.getImageUrl(),
+          item.getThumbnailUrl(),
           item.getDiscountedPrice()
       );
     }

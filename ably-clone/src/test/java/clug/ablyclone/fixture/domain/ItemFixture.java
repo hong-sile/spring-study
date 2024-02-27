@@ -1,5 +1,7 @@
 package clug.ablyclone.fixture.domain;
 
+import static clug.ablyclone.fixture.domain.ImageUrlFixture.IMAGES;
+
 import clug.ablyclone.domain.Item;
 import clug.ablyclone.domain.Seller;
 
@@ -10,7 +12,7 @@ public class ItemFixture {
         .seller(seller)
         .discountPercentage(29)
         .itemName("나시 티셔츠")
-        .imageUrl("이미지 URL")
+        .imageUrls(IMAGES())
         .originPrice(29900L)
         .build();
   }
