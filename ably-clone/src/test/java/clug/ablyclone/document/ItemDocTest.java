@@ -7,7 +7,7 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWit
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import clug.ablyclone.dto.ItemPreviewResponse;
+import clug.ablyclone.dto.FormattedItemPreviewResponse.ItemPreviewResponse;
 import clug.ablyclone.support.DocTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package clug.ablyclone.controller;
 
-import clug.ablyclone.dto.ItemPreviewResponse;
 import clug.ablyclone.dto.FormattedItemPreviewResponse;
+import clug.ablyclone.dto.FormattedItemPreviewResponse.ItemPreviewResponse;
 import clug.ablyclone.service.ItemService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,8 @@ public class ItemController {
   public ResponseEntity<FormattedItemPreviewResponse> findAllItems() {
     final List<ItemPreviewResponse> itemPreviewResponses = itemService.findAll();
 
-    final FormattedItemPreviewResponse actualResponse = new FormattedItemPreviewResponse(itemPreviewResponses);
+    final FormattedItemPreviewResponse actualResponse = new FormattedItemPreviewResponse(
+        itemPreviewResponses);
 
     return ResponseEntity.ok(actualResponse);
   }

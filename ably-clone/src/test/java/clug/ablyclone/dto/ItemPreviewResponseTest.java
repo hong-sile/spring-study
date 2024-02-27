@@ -5,6 +5,7 @@ import static clug.ablyclone.fixture.domain.SellerFixture.CLUG_1;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import clug.ablyclone.domain.Item;
+import clug.ablyclone.dto.FormattedItemPreviewResponse.ItemPreviewResponse;
 import org.junit.jupiter.api.Test;
 
 class ItemPreviewResponseTest {

@@ -1,6 +1,6 @@
 package clug.ablyclone.service;
 
-import clug.ablyclone.dto.ItemPreviewResponse;
+import clug.ablyclone.dto.FormattedItemPreviewResponse.ItemPreviewResponse;
 import clug.ablyclone.repository.ItemRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

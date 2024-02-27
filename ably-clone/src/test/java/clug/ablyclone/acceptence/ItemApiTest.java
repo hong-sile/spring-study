@@ -7,8 +7,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import clug.ablyclone.domain.Item;
 import clug.ablyclone.domain.Seller;
-import clug.ablyclone.dto.ItemPreviewResponse;
 import clug.ablyclone.dto.FormattedItemPreviewResponse;
+import clug.ablyclone.dto.FormattedItemPreviewResponse.ItemPreviewResponse;
 import clug.ablyclone.support.AcceptanceTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,8 @@ public class ItemApiTest extends AcceptanceTest {
 
     final FormattedItemPreviewResponse expected
         = new FormattedItemPreviewResponse(List.of(ItemPreviewResponse.from(아이템)));
-    final FormattedItemPreviewResponse actual = get("/items").as(FormattedItemPreviewResponse.class);
+    final FormattedItemPreviewResponse actual = get("/items").as(
+        FormattedItemPreviewResponse.class);
 
     assertThat(actual)
         .usingRecursiveComparison()
@@ -36,7 +37,8 @@ public class ItemApiTest extends AcceptanceTest {
 
     final FormattedItemPreviewResponse expected
         = new FormattedItemPreviewResponse(List.of(ItemPreviewResponse.from(아이템)));
-    final FormattedItemPreviewResponse actual = get("/items").as(FormattedItemPreviewResponse.class);
+    final FormattedItemPreviewResponse actual = get("/items").as(
+        FormattedItemPreviewResponse.class);
 
     assertThat(actual)
         .usingRecursiveComparison()

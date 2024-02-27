@@ -19,7 +19,8 @@ public class DatabaseCleaner {
   @PostConstruct
   @SuppressWarnings("unchecked")
   private void findDatabaseTableNames() {
-    final List<Object[]> tableInfos = entityManager.createNativeQuery("SHOW TABLES").getResultList();
+    final List<Object[]> tableInfos = entityManager.createNativeQuery("SHOW TABLES")
+        .getResultList();
     for (Object[] tableInfo : tableInfos) {
       String tableName = (String) tableInfo[0];
       tableNames.add(tableName);

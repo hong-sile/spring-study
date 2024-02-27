@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import clug.ablyclone.domain.Item;
 import clug.ablyclone.domain.Seller;
-import clug.ablyclone.dto.ItemPreviewResponse;
+import clug.ablyclone.dto.FormattedItemPreviewResponse.ItemPreviewResponse;
 import clug.ablyclone.repository.ItemRepository;
 import clug.ablyclone.repository.SellerRepository;
 import clug.ablyclone.support.ServiceTest;
