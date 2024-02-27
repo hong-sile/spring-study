@@ -1,5 +1,6 @@
 package clug.ablyclone.domain;
 
+import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -20,7 +21,7 @@ public class Item {
   @Id
   private Long id;
   private int discountPercentage;
-  @ManyToOne
+  @ManyToOne(fetch = LAZY)
   private Seller seller;
   private String itemName;
   private String imageUrl;

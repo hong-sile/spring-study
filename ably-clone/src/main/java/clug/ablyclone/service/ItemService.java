@@ -1,17 +1,23 @@
 package clug.ablyclone.service;
 
 import clug.ablyclone.dto.ItemPreviewResponse;
+import clug.ablyclone.repository.ItemRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ItemService {
 
+  private final ItemRepository itemRepository;
+
   public List<ItemPreviewResponse> findAll() {
-    return List.of(
-        new ItemPreviewResponse("29%", "clug_1", "나시 티셔츠", "이미지", 23500L)
-    );
+    return itemRepository.findAllFetchSeller()
+        .stream()
+        .map(ItemPreviewResponse::from)
+        .toList();
   }
 }
