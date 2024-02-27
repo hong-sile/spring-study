@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import clug.ablyclone.domain.Item;
 import clug.ablyclone.domain.Seller;
 import clug.ablyclone.dto.ItemPreviewResponse;
-import clug.ablyclone.dto.ItemPreviewResponses;
+import clug.ablyclone.dto.FormattedItemPreviewResponse;
 import clug.ablyclone.support.AcceptanceTest;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -20,9 +20,23 @@ public class ItemApiTest extends AcceptanceTest {
     final Seller 판매자 = 판매자를_등록한다();
     final Item 아이템 = 아이템을_등록한다(판매자);
 
-    final ItemPreviewResponses expected
-        = new ItemPreviewResponses(List.of(ItemPreviewResponse.from(아이템)));
-    final ItemPreviewResponses actual = get("/items").as(ItemPreviewResponses.class);
+    final FormattedItemPreviewResponse expected
+        = new FormattedItemPreviewResponse(List.of(ItemPreviewResponse.from(아이템)));
+    final FormattedItemPreviewResponse actual = get("/items").as(FormattedItemPreviewResponse.class);
+
+    assertThat(actual)
+        .usingRecursiveComparison()
+        .isEqualTo(expected);
+  }
+
+  @Test
+  void 아이템_하나_조회한다() {
+    final Seller 판매자 = 판매자를_등록한다();
+    final Item 아이템 = 아이템을_등록한다(판매자);
+
+    final FormattedItemPreviewResponse expected
+        = new FormattedItemPreviewResponse(List.of(ItemPreviewResponse.from(아이템)));
+    final FormattedItemPreviewResponse actual = get("/items").as(FormattedItemPreviewResponse.class);
 
     assertThat(actual)
         .usingRecursiveComparison()
