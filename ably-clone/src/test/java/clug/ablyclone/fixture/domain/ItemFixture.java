@@ -1,7 +1,5 @@
 package clug.ablyclone.fixture.domain;
 
-import static clug.ablyclone.fixture.domain.SellerFixture.CLUG_1;
-
 import clug.ablyclone.domain.Item;
 import clug.ablyclone.domain.Seller;
 
