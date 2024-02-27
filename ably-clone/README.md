@@ -1,5 +1,7 @@
 # ably clone coding
 
+## 깃허브 주소
+- https://github.com/hong-sile/spring-study/tree/main/ably-clone
 ## 요구사항
 
 - [x] 홈 화면 API(Item 목록 조회)
@@ -17,7 +19,7 @@
     - [x] Seller
 - [x] restdocs 환경 설정
 - [x] 테스트 격리 수행
-- [ ] 초기 데이터 삽입
+- [x] 초기 데이터 삽입
 
 ## API 명세
 
@@ -82,6 +84,7 @@ GET /items/{itemId}
 - 문서화 테스트는 Rest Docs, MockMvc를 이용하여 작성
 - 문서화 테스트로 실제 프로덕션 코드의 end point, request, response 들을 검증할 수 있고, 해당 테스트 코드로 문서화된 API 명세 페이지 자동생성
 - 생성된 문서는 테스트를 통과해야만 작성되므로, 명세와 백엔드의 코드가 일치하지 않을 일은 없음
+- 스프링을 동작 시킨 후 http://localhost:8080/docs/index.html 로도 확인 가능
 
 [API 명세 문서](src/main/resources/static/docs/index.html)
 
