@@ -1,9 +1,11 @@
 package clug.ablyclone;
 
+import clug.ablyclone.config.DatabaseClearExtension;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-@SpringBootTest
+
+@ExtendWith(DatabaseClearExtension.class)
 class AblyCloneApplicationTests {
 
   @Test
