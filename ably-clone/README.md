@@ -135,5 +135,36 @@ GET /items/{itemId}
 - data 부분을 제외하면 나머지는 모두 공유되는 부분이므로 이 또한 abstract class(DefaultResponseFormat)로 추상화
 - 실제 response dto 들은 해당 class를 상속받고 inner 클래스에서 data 부분을 정의하도록 설계
 
+#### H2 memory DB 사용
+
+- database를 연결은 하였으나, 디비를 연결할 만큼 큰 규모의 프로젝트가 아니기 때문에 h2 메모리 디비 선택
+- h2 메모리 디비를 선택했으나 Dialect는 Mysql로 설정함으로써, 추후 실제 디비를 연결할 때 Mysql을 써도 문제가 없도록 설정
 
 #### No Offest 기반 페이징
+
+- 실제 서비스의 경우 Item 목록 전체를 불러 오는 것은 굉장히 큰 과부하가 발생
+- 그렇기 때문에 일부만 로딩하는 Pagination 구현
+- 거기에 덧붙여, no offset 방식으로 구현하였는데, 이렇게 작성된 쿼리가 offset 보다 더 효율적인 쿼리로 동작
+- 실제 에이블리 서비스의 경우 무한 스크롤 방식이기 때문에 no offset 방식이 효율적이어서 해당 방식으로 구현
+- 아래는 실제 코드에 작성된 쿼리(jpql이기 때문에 기존 sql과는 문법이 살짝 다름)
+
+```
+select i
+from Item i
+join fetch Seller s on s.id = i.seller.id
+where i.id > :lastItemId
+ORDER BY i.id ASC
+limit 10
+```
+
+## 개발 환경
+
+- JDK 17
+- Spring Boot 3.2.3
+    - Spring data jpa
+    - Spring web
+    - Spring test
+- lombok
+- h2
+- rest docs
+- rest assured
