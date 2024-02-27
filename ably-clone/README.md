@@ -75,7 +75,15 @@ GET /items/{itemId}
 
 ### 테스트
 
+- 자동화된 테스트를 구축하기 위하여 다음과 같은 환경의 테스트 코드를 작성
+
 #### 문서화 테스트
+
+- 문서화 테스트는 Rest Docs, MockMvc를 이용하여 작성
+- 문서화 테스트로 실제 프로덕션 코드의 end point, request, response 들을 검증할 수 있고, 해당 테스트 코드로 문서화된 API 명세 페이지 자동생성
+- 생성된 문서는 테스트를 통과해야만 작성되므로, 명세와 백엔드의 코드가 일치하지 않을 일은 없음
+
+[API 명세 문서](src/main/resources/static/docs/index.html)
 
 #### 인수 테스트
 
