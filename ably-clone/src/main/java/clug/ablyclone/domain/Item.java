@@ -19,7 +19,7 @@ public class Item {
   @GeneratedValue(strategy = IDENTITY)
   @Id
   private Long id;
-  private Double discountRate;
+  private int discountPercentage;
   @ManyToOne
   private Seller seller;
   private String itemName;
@@ -27,9 +27,9 @@ public class Item {
   private Long originPrice;
 
   @Builder
-  public Item(final Double discountRate, final Seller seller, final String itemName
+  public Item(final int discountPercentage, final Seller seller, final String itemName
       , final String imageUrl, final Long originPrice) {
-    this.discountRate = discountRate;
+    this.discountPercentage = discountPercentage;
     this.seller = seller;
     this.itemName = itemName;
     this.imageUrl = imageUrl;
@@ -37,6 +37,6 @@ public class Item {
   }
 
   public Long getDiscountedPrice() {
-    return originPrice - (long) Math.floor(discountRate * originPrice);
+    return originPrice - discountPercentage * originPrice / 100;
   }
 }
