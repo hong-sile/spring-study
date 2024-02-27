@@ -15,7 +15,7 @@ class ItemPreviewResponseTest {
     final Item 나시_티셔츠 = 나시_티셔츠(CLUG_1());
 
     final ItemPreviewResponse expected = new ItemPreviewResponse(
-        1L, "29%", "Clug_1", "나시 티셔츠", "이미지 URL", 21229L
+        1L, "29%", "Clug_1", "나시 티셔츠", "image", 21229L
     );
     final ItemPreviewResponse actual = ItemPreviewResponse.from(나시_티셔츠);
 
