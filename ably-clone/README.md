@@ -2,7 +2,7 @@
 
 ## 요구사항
 
-- [ ] 홈 화면 API
+- [x] 홈 화면 API(Item 목록 조회)
     - [x] API 명세 정의
     - [x] rest docs 테스트 작성
     - [x] Item 목록 조회 로직 구현
@@ -46,11 +46,11 @@ GET /items
   "msg": "아이템 목록 조회 성공",
   "data": [
     {
-      "discountRate": "29%",
+      "discountPercentage": "29%",
       "sellerName": "clug_1",
       "itemName": "나시 티셔츠",
       "imageUrl": "이미지",
-      "price": 23500
+      "discountedPrice": 23500
     }
   ]
 }

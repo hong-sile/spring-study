@@ -29,12 +29,14 @@ public class ItemDocTest extends DocTest {
             responseFields(
                 성공여부,
                 메시지,
-                fieldWithPath("data[].discountRate").type(JsonFieldType.STRING).description("할인율"),
+                fieldWithPath("data[].discountPercentage").type(JsonFieldType.STRING)
+                    .description("할인율"),
                 fieldWithPath("data[].sellerName").type(JsonFieldType.STRING).description("판매자 이름"),
                 fieldWithPath("data[].itemName").type(JsonFieldType.STRING).description("상품 이름"),
                 fieldWithPath("data[].imageUrl").type(JsonFieldType.STRING)
                     .description("상품 이미지 url"),
-                fieldWithPath("data[].price").type(JsonFieldType.NUMBER).description("상품 가격")
+                fieldWithPath("data[].discountedPrice").type(JsonFieldType.NUMBER)
+                    .description("상품 가격")
             )
         ));
   }
