@@ -30,16 +30,18 @@ public class Item {
   @OneToMany(mappedBy = "item", cascade = PERSIST, orphanRemoval = true)
   private List<ImageUrl> imageUrls;
   private Long originPrice;
+  private Long likeCount;
 
   @Builder
   public Item(final int discountPercentage, final Seller seller, final String itemName
-      , final List<ImageUrl> imageUrls, final Long originPrice) {
+      , final List<ImageUrl> imageUrls, final Long originPrice, final Long likeCount) {
     associationMappingImageUrls(imageUrls);
     this.discountPercentage = discountPercentage;
     this.seller = seller;
     this.itemName = itemName;
     this.imageUrls = imageUrls;
     this.originPrice = originPrice;
+    this.likeCount = likeCount;
   }
 
   private void associationMappingImageUrls(final List<ImageUrl> imageUrls) {

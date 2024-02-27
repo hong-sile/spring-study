@@ -17,7 +17,7 @@ class ItemDetailResponseTest {
 
     final ItemDetailResponse actual = ItemDetailResponse.from(나시_티셔츠);
     final ItemDetailResponse expected = new ItemDetailResponse(
-        List.of("image"), "나시 티셔츠", 29900L, 21229L, "Clug_1", "클러그 프로필 이미지 url"
+        List.of("image"), "나시 티셔츠", 29900L, 21229L, 10L, "Clug_1", "클러그 프로필 이미지 url"
     );
 
     assertThat(actual)

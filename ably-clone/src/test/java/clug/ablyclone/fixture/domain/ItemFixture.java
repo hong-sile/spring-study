@@ -14,6 +14,7 @@ public class ItemFixture {
         .itemName("나시 티셔츠")
         .imageUrls(IMAGES())
         .originPrice(29900L)
+        .likeCount(10L)
         .build();
   }
 }

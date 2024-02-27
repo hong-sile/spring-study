@@ -47,7 +47,7 @@ public class ItemDocTest extends DocTest {
   void 아이템_단건_조회() throws Exception {
     final Long id = 1L;
     final ItemDetailResponse detailResponse = new ItemDetailResponse(
-        List.of("image"), "나시 티셔츠", 29900L, 21229L, "Clug_1", "클러그 프로필 이미지 url"
+        List.of("image"), "나시 티셔츠", 29900L, 21229L, 10L, "Clug_1", "클러그 프로필 이미지 url"
     );
 
     when(itemService.findById(id)).thenReturn(detailResponse);
@@ -60,6 +60,7 @@ public class ItemDocTest extends DocTest {
                 메시지,
                 fieldWithPath("data.imageUrls[]").type(JsonFieldType.ARRAY).description("이미지 url들"),
                 fieldWithPath("data.name").type(JsonFieldType.STRING).description("상품 이름"),
+                fieldWithPath("data.likeCount").type(JsonFieldType.NUMBER).description("좋아요 수"),
                 fieldWithPath("data.originPrice").type(JsonFieldType.NUMBER)
                     .description("상품 원래 가격"),
                 fieldWithPath("data.discountedPrice").type(JsonFieldType.NUMBER)

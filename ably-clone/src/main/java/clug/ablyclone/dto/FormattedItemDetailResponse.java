@@ -30,7 +30,7 @@ public class FormattedItemDetailResponse extends DefaultResponseFormat {
     private final String name;
     private final Long originPrice;
     private final Long discountedPrice;
-    //    private final Integer likeCount;
+    private final Long likeCount;
     private final String sellerName;
     private final String sellerProfileImageUrl;
 
@@ -40,6 +40,7 @@ public class FormattedItemDetailResponse extends DefaultResponseFormat {
           item.getItemName(),
           item.getOriginPrice(),
           item.getDiscountedPrice(),
+          item.getLikeCount(),
           item.getSeller().getName(),
           item.getSeller().getProfileImageUrl()
       );
