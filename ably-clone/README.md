@@ -15,6 +15,7 @@
     - [ ] Item
     - [ ] Seller
     - [ ] User(후순위)
+- [x] restdocs 환경 설정
 
 ## API 명세
 

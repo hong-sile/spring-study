@@ -16,6 +16,7 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    asciidoctorExt
 }
 
 repositories {
@@ -24,6 +25,9 @@ repositories {
 
 ext {
     set('snippetsDir', file("build/generated-snippets"))
+    set('restDocsCopyFrom', file("build/docs/asciidoc/index.html"))
+    set('restDocsCopyIntoBuild', file("build/resources/main/static/docs"))
+    set('restDocsCopyIntoLocal', file("src/main/resources/static/docs"))
 }
 
 dependencies {
@@ -50,5 +54,27 @@ tasks.named('test') {
 
 tasks.named('asciidoctor') {
     inputs.dir snippetsDir
+    configurations 'asciidoctorExt'
+    sources {
+        include("**/index.adoc")
+    }
+    baseDirFollowsSourceFile()
     dependsOn test
 }
+
+asciidoctor.doFirst {
+    delete file(restDocsCopyFrom)
+}
+
+task copyDocument(type: Copy) {
+    dependsOn asciidoctor
+    from file(restDocsCopyFrom)
+    into file(restDocsCopyIntoLocal)
+    into file(restDocsCopyIntoBuild)
+}
+
+tasks.named('resolveMainClassName') {
+    inputs.files(tasks.named('copyDocument'))
+}
+
+bootJar.dependsOn('copyDocument')
