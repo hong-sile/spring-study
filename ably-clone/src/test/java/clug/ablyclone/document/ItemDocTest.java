@@ -18,7 +18,7 @@ public class ItemDocTest extends DocTest {
   @Test
   void 아이템_목록_조회() throws Exception {
     final List<ItemPreviewResponse> itemPreviewResponses = List.of(
-        new ItemPreviewResponse("29%", "clug_1", "나시 티셔츠", "이미지", 23500L)
+        new ItemPreviewResponse(1L, "29%", "clug_1", "나시 티셔츠", "이미지", 23500L)
     );
 
     when(itemService.findAll()).thenReturn(itemPreviewResponses);
@@ -29,6 +29,7 @@ public class ItemDocTest extends DocTest {
             responseFields(
                 성공여부,
                 메시지,
+                fieldWithPath("data[].id").type(JsonFieldType.NUMBER).description("상품 id"),
                 fieldWithPath("data[].discountPercentage").type(JsonFieldType.STRING)
                     .description("할인율"),
                 fieldWithPath("data[].sellerName").type(JsonFieldType.STRING).description("판매자 이름"),

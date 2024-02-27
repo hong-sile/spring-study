@@ -27,6 +27,7 @@ public class FormattedItemPreviewResponse extends DefaultResponseFormat {
 
     private static final String DISCOUNT_PERCENTAGE_FORMAT = "%d%%";
 
+    private final Long id;
     private final String discountPercentage;
     private final String sellerName;
     private final String itemName;
@@ -35,6 +36,7 @@ public class FormattedItemPreviewResponse extends DefaultResponseFormat {
 
     public static ItemPreviewResponse from(final Item item) {
       return new ItemPreviewResponse(
+          item.getId(),
           String.format(DISCOUNT_PERCENTAGE_FORMAT, item.getDiscountPercentage()),
           item.getSeller().getName(),
           item.getItemName(),

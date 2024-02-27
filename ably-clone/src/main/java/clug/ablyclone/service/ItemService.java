@@ -1,5 +1,6 @@
 package clug.ablyclone.service;
 
+import clug.ablyclone.dto.FormattedItemDetailResponse.ItemDetailResponse;
 import clug.ablyclone.dto.FormattedItemPreviewResponse.ItemPreviewResponse;
 import clug.ablyclone.repository.ItemRepository;
 import java.util.List;
@@ -19,5 +20,9 @@ public class ItemService {
         .stream()
         .map(ItemPreviewResponse::from)
         .toList();
+  }
+
+  public ItemDetailResponse findById(final Long id) {
+    return null;
   }
 }

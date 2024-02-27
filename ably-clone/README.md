@@ -46,6 +46,7 @@ GET /items
   "msg": "아이템 목록 조회 성공",
   "data": [
     {
+      "id": 1,
       "discountPercentage": "29%",
       "sellerName": "clug_1",
       "itemName": "나시 티셔츠",
