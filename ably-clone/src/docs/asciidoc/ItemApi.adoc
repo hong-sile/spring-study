@@ -23,3 +23,17 @@ include::{snippets}/../../build/generated-snippets/find-all-items/http-response.
 ===== *Http Response Description*
 
 include::{snippets}/../../build/generated-snippets/find-all-items/response-fields.adoc[]
+
+==== *아이템 단건 조회 API*
+
+===== *Http Request*
+
+include::{snippets}/../../build/generated-snippets/find-item/http-request.adoc[]
+
+===== *Http Response*
+
+include::{snippets}/../../build/generated-snippets/find-item/http-response.adoc[]
+
+===== *Http Response Description*
+
+include::{snippets}/../../build/generated-snippets/find-item/response-fields.adoc[]
